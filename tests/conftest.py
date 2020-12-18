@@ -1,6 +1,43 @@
 import pytest
+import os
 from selenium import webdriver
 import testing_pytest.proj_constants as proj_consts
+
+@pytest.fixture(scope="class")
+def test_setup(request):
+    print("\nSetup Started")
+
+    browser_name = request.config.getoption("--browser_name")
+    print("Browser Name from command line: ", browser_name)
+
+    if browser_name == "chrome":
+        print("Testing using browser: Chrome")
+        driver = webdriver.Chrome(executable_path  = os.path.join(os.getcwd(), 'drivers', 'chromedriver.exe'))
+    elif browser_name == 'firefox':
+        print("Testing using browser: Firefox")
+        driver = webdriver.Firefox(executable_path = os.path.join(os.getcwd(), 'drivers','geckodriver.exe'))
+    else:
+        print("Testing using default browser: Chrome")
+        driver = webdriver.Chrome(executable_path  = os.path.join(os.getcwd(), 'drivers', 'chromedriver.exe'))
+
+    print("Opening Browser URL: " + proj_consts.URL)
+    driver.get(proj_consts.URL)
+
+    request.cls.driver = driver
+    yield driver
+    print("Closing Browser URL" + proj_consts.URL)
+    driver.close()
+    driver.quit()
+
+
+def pytest_addoption(parser):
+    parser.addoption(
+        "--browser_name",
+        action="store"
+    )
+
+
+
 
 @pytest.fixture
 # @pytest.fixture(scope="class")
@@ -25,15 +62,11 @@ def get_employee_roles():
 def get_browser_details(request):
     return request.param
 
-def pytest_addoption(parser):
-    parser.addoption(
-        "--name",
-        action="store"
-    )
+
 
 @pytest.fixture()
 def name(request):
-    name = request.config.getoption("--name")
+    name = request.config.getoption("--browser_name")
     print(name)
     return name
 
@@ -45,28 +78,6 @@ def get_params():
 
 
 
-@pytest.fixture(scope="class")
-def test_setup(request):
-    print("\nSetup")
-    name = request.config.getoption("--name")
-    print(name)
-
-    print(proj_consts.URL)
-    print(proj_consts.USER)
-    print(proj_consts.PASSWORD)
-
-    if name == "chrome":
-        driver = webdriver.Chrome(executable_path='C:\\Drivers\\chromedriver.exe')
-    elif name == 'firefox':
-        driver = webdriver.Firefox(executable_path='C:\\Drivers\\geckodriver.exe')
-    else:
-        driver = webdriver.Chrome(executable_path='C:\\Drivers\\chromedriver.exe')
-
-    driver.get(proj_consts.URL)
-    request.cls.driver = driver
-    yield driver
-    driver.close()
-    driver.quit()
 
 
 

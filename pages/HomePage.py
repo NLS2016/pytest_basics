@@ -3,7 +3,7 @@ import time
 
 class HomePage:
 
-    welcome_link = "Welcome nivetha"
+    welcome_link = "Welcome"
     logout_link  = "Logout"
 
     def __init__(self, driver):

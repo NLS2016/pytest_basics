@@ -17,8 +17,7 @@ class Test_Login:
 
     def test_logout(self, test_setup):
         self.driver = test_setup
-        assert False, "Failing Test"
-        # homepage = HomePage(self.driver)
-        # homepage.click_welcome()
-        # homepage.click_logout()
+        homepage = HomePage(self.driver)
+        homepage.click_welcome()
+        homepage.click_logout()
 
