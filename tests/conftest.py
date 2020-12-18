@@ -20,6 +20,8 @@ def test_setup(request):
         print("Testing using default browser: Chrome")
         driver = webdriver.Chrome(executable_path  = os.path.join(os.getcwd(), 'drivers', 'chromedriver.exe'))
 
+    driver.implicitly_wait(3)
+    driver.maximize_window()
     print("Opening Browser URL: " + proj_consts.URL)
     driver.get(proj_consts.URL)
 
