@@ -25,8 +25,8 @@ PyTest HTML Reports:
     Install pytest-html package from Project Settings.
     
     Usage:
-        py.test tests\test_login.py -s -v  --html=reports/report1.html
-        py.test tests\test_login.py -s -v  --html=reports/report1.html --self-contained-html
+        py.test tests\test_login.py  --html=reports/report1.html
+        py.test tests\test_login.py  --html=reports/report1.html --self-contained-html
     
     View Report:
         Open report1.html from any browser.
@@ -35,7 +35,7 @@ Allure Reports:
     Install allure-pytest package from Project Settings.
     
     Usage:
-        py.test tests\test_login.py -s -v --alluredir=reports\allure-reports
+        py.test tests\test_login.py  --alluredir=reports\allure-reports
     
     View Report:
         azure serve reports\allure-reports
