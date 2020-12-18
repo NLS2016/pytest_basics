@@ -1,8 +1,12 @@
 Selenium Project using PyTest framework.
 
+
 PyTest:
     Install "pytest" package from Project Settings.
-    
+
+
+Basic Usage:
+
     Usage: From Project Root
         Run all tests:           
             py.test
@@ -16,9 +20,6 @@ PyTest:
             py.test -k login
                 where "login" is sub string of method name (def) test_login
                  in login_test.py test file.
-
-
-Basic Usage
 
 
 PyTest HTML Reports:
