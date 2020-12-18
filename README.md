@@ -1,1 +1,1 @@
-pytest selenium project
+Selenium Project using PyTest framework.
